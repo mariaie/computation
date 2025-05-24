@@ -1,15 +1,26 @@
 from computation.Classes.Card import Card
+from computation.Classes.Deck import Deck
 
-# um pequeno teste
+# testando as classes:
 if __name__ == "__main__":
-    carta1 = Card(4, "hearts")
-    print(carta1)
+    # Criação de duas cartas
+    carta1, carta2 = Card(4, "hearts"), Card(12, "diamonds")
+    print(f"Creating cards: {carta1} and {carta2}")
 
-    carta2 = Card(12, "diamonds")
-    print(carta2)
+    # Criação do baralho
+    deck = Deck()
+    print(f"Deck contains: {len(deck.cards)}")
+    print(deck)  # Mostra o baralho completo
 
-    carta3 = Card(1, "spades")
-    print(carta3)
+    # Embaralhar o baralho
+    deck.shuffle()
+    print("Shuffled deck:")
+    print(deck)  # Mostra o baralho embaralhado
 
-    carta4 = Card(10, "clubs")
-    print(carta4)
+    # Retirar 5 cartas
+    drawn_cards = deck.draw(5)
+    print("Drawn cards:")
+    for card in drawn_cards:
+        print(card)  # Mostra as cartas retiradas com representações visuais
+
+    print(f"Remaining cards in deck: {len(deck.cards)}")
