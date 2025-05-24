@@ -18,30 +18,8 @@ class Card:
         suit_symbols (dict): A dictionary mapping suit names to their symbols.
     """
 
-    # dictionary with values
-    value_names = {
-        1: "Ace",
-        2: "2",
-        3: "3",
-        4: "4",
-        5: "5",
-        6: "6",
-        7: "7",
-        8: "8",
-        9: "9",
-        10: "10",
-        11: "Jack",
-        12: "Queen",
-        13: "King",
-    }
-
-    # dictionary with suits
-    suit_names = {
-        "spades": "spades",
-        "clubs": "clubs",
-        "diamonds": "diamonds",
-        "hearts": "hearts",
-    }
+    value_names = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
+    suit_names = ["spades","clubs","diamonds","hearts"]
 
     # dictionary with symbols
     suit_symbols = {
@@ -56,21 +34,21 @@ class Card:
         Initialize a Card object.
 
         Args:
-            value (int): The value of the card (1-13).
+            value (int): The card's value from 1 to 13 (1 = Ace, 13 = King).
             suit (str): The suit of the card ('spades', 'clubs', 'hearts', 'diamonds').
 
         Raises:
-            ValueError: If the value is not between 1 and 13.
-            ValueError: If the suit is not valid.
+            ValueError: If value is not between 1 and 13.
+            ValueError: If suit is not valid.
         """
-        if value not in self.value_names:
-            raise ValueError("The card number needs to be between 1 and 13:)")
+        if not isinstance(value, int) or not (1 <= value <= 13):
+            raise ValueError("The card value must be between 1 and 13.")
 
         suit_lower = suit.lower()
         if suit_lower not in self.suit_names:
-            raise ValueError("The card suit is invalid:)")
+            raise ValueError("The card suit is invalid.")
 
-        self.value = value
+        self.value = value - 1  # Internally store as index (0–12)
         self.suit = suit_lower
 
     def __str__(self):
@@ -100,8 +78,3 @@ class Card:
         """
         return f"Card(value={self.value}, suit={self.suit})"
 
-card1 = Card(1, "hearts")
-card2 = Card(12, "spades")
-
-print(card1)
-print(card2)

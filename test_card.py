@@ -1,10 +1,10 @@
-from computation.Classes.Card import Card
-from computation.Classes.Deck import Deck
+from Classes.Card_game import Card
+from Classes.Deck import Deck
 
 # testando as classes:
 if __name__ == "__main__":
     # Criação de duas cartas
-    carta1, carta2 = Card(4, "hearts"), Card(12, "diamonds")
+    carta1, carta2 = Card(3, "hearts"), Card(6, "spades")
     print(f"Creating cards: {carta1} and {carta2}")
 
     # Criação do baralho

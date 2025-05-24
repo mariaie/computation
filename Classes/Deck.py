@@ -5,7 +5,7 @@
 #  • Drawing — returning a specific number of cards.
 
 import random
-from computation.Classes.Card import Card
+from Classes.Card_game import Card
 
 
 class Deck:
@@ -22,7 +22,7 @@ class Deck:
         """
         self.cards = []
         for suit in Card.suit_names:
-            for value in Card.value_names:
+            for value in range(1, 14):  # 1 to 13 inclusive
                 self.cards.append(Card(value, suit))
 
     def __str__(self):
