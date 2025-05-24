@@ -99,3 +99,9 @@ class Card:
             str: A string representation for debugging (e.g., 'Card(value=1, suit='spades')').
         """
         return f"Card(value={self.value}, suit={self.suit})"
+
+card1 = Card(1, "hearts")
+card2 = Card(12, "spades")
+
+print(card1)
+print(card2)
