@@ -1,5 +1,7 @@
 
 from computation.Classes.Card import Card, Deck
+from Classes.Hand_Detection import detect_poker_hand
+
 """""""""""
 === Welcome to the Poker Hand Detector! ===
 
