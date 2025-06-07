@@ -71,6 +71,13 @@ class Game:
         - Update and show combination stats
         """
         pass
+    def draw_cards_from_deck(deck):
+    while True:
+            number_of_cards_to_be_drawn = int(input("How many cards would you like to draw? "))
+            if 3 <= number_of_cards_to_be_drawn <= 15:
+                return deck.draw(number_of_cards_to_be_drawn)
+            else:
+                print("Please choose a number between 3 and 15.")
         
 def choose_sorting_algorithm(hand):
       """
