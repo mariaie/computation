@@ -28,8 +28,8 @@ class Card:
         "hearts": " ♥",
         "diamonds": " ♦"
     }
-     def get_value(self):  #this will help later for the sorting
-        return self.value
+     #def get_value(self):  #this will help later for the sorting
+      #  return self.value
 
     def get_rank(self):
         return self.rank

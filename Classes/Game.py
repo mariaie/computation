@@ -1,42 +1,13 @@
-
-from computation.Classes.Card import Card, Deck
+from Classes.Card_game import Card
+from Classes.Deck import Deck
 from Classes.Hand_Detection import detect_poker_hand
-from Classes.sorting_algorithms import heap_sort, binary_insertion_sort, merge_sort, quick_sort
+from Classes.Sorting_algorithms import Sorting_Algorithms
 from Classes.Hand import Hand
-"""""""""""
-=== Welcome to the Poker Hand Detector! ===
+from colorama import init, Fore, Style
+import sys
 
-Do you want to play a hand? (yes/no): y
+init(autoreset=True)
 
-How many cards do you want to draw? (3 to 15): 5
-
-Choose a sorting algorithm:
-1 - Heap Sort
-2 - Merge Sort
-3 - Binary Insertion Sort
-4 - Quick Sort
-
-Your choice: 2
-
-Your sorted hand: 3♦ 6♠ 6♣ 9♥ K♦
-
-Detected combination: One Pair!
-
-Combinations found so far:
-- One Pair: 1
-- Two Pair: 0
-- Three of a Kind: 0
-- Straight: 0
-- Flush: 0
-- Full House: 0
-- Four of a Kind: 0
-- Straight Flush: 0
-- Royal Flush: 0
-
-Do you want to play again? (y/n): n
-
-Thank you for playing! See you next time.
-"""""""""""
 
 class Game:
     """
@@ -49,7 +20,19 @@ class Game:
         """
         Initialize game state, including deck, combination counter, and session status.
         """
-        pass
+        self.combination_counts = {
+            "High Card": 0,
+            "One Pair": 0,
+            "Two Pair": 0,
+            "Three of a Kind": 0,
+            "Straight": 0,
+            "Flush": 0,
+            "Full House": 0,
+            "Four of a Kind": 0,
+            "Straight Flush": 0,
+            "Royal Flush": 0
+        }
+        self.playing = True
 
     def start(self):
         """
@@ -58,7 +41,18 @@ class Game:
         - Ask to play
         - Manage replay logic
         """
-        pass
+        print("\n=== Welcome to the Poker Hand Detector! ===\n")
+
+        while self.playing:
+            play = input("Do you want to play a hand? (yes/no): ").lower()
+            if play in ['y', 'yes']:
+                self.play_round()
+            elif play in ['n', 'no']:
+                self.playing = False
+            else:
+                print("Please enter 'yes' or 'no'.")
+
+        print("\nThank you for playing! See you next time.\n")
 
     def play_round(self):
         """
@@ -70,49 +64,83 @@ class Game:
         - Detect poker hand
         - Update and show combination stats
         """
-        pass
-    def draw_cards_from_deck(deck):
-    while True:
-            number_of_cards_to_be_drawn = int(input("How many cards would you like to draw? "))
-            if 3 <= number_of_cards_to_be_drawn <= 15:
-                return deck.draw(number_of_cards_to_be_drawn)
-            else:
-                print("Please choose a number between 3 and 15.")
-        
-def choose_sorting_algorithm(hand):
-      """
-        Prompt user to select a sorting algorithm for the drawn hand.
-        Returns the selected algorithm as a function reference.
-        """
-    while True:
-        number = int(input(
-            "Choose the sorting algorithm:\n 1) Heap Sort;\n 2) Binary Insertion Sort;\n 3) Merge Sort;\n 4) Quick Sort;\n Choose one number: "))
-        match number:
-            case 1:
-                hand = heap_sort(hand)
-                break
-            case 2:
-                hand = binary_insertion_sort(hand)
-                break
-            case 3:
-                hand = merge_sort(hand)
-                break
-            case 4:
-                quick_sort(hand, 0, hand.get_quantity() - 1)
-                break
-            case _:
-                print("Please type a number between 1 and 4.")
+        deck = Deck()
+        deck.shuffle()
 
-    return hand
+        hand = self.draw_cards_from_deck(deck)
+        sorted_hand = self.choose_sorting_algorithm(hand)
+
+        self.display_hand(sorted_hand)
+
+        combination = detect_poker_hand(sorted_hand)
+        self.display_results(combination)
+
+    def draw_cards_from_deck(self, deck):
+        """
+        Draw cards from the deck based on user input.
+        Validates the number of cards (3-15).
+        """
+        while True:
+            try:
+                num_cards = int(input("\nHow many cards do you want to draw? (3 to 15): "))
+                if 3 <= num_cards <= 15:
+                    return Hand(deck.draw(num_cards))
+                else:
+                    print("Please choose a number between 3 and 15.")
+            except ValueError:
+                print("Please enter a valid number.")
+
+    def choose_sorting_algorithm(self, hand):
+        """
+        Prompt user to select a sorting algorithm for the drawn hand.
+        Returns the sorted hand.
+        """
+        print("\nChoose a sorting algorithm:")
+        print("1 - Heap Sort")
+        print("2 - Merge Sort")
+        print("3 - Binary Insertion Sort")
+        print("4 - Quick Sort")
+
+        while True:
+            try:
+                choice = int(input("\nYour choice: "))
+                if choice == 1:
+                    return heap_sort(hand)
+                elif choice == 2:
+                    return merge_sort(hand)
+                elif choice == 3:
+                    return binary_insertion_sort(hand)
+                elif choice == 4:
+                    quick_sort(hand, 0, hand.get_quantity() - 1)
+                    return hand
+                else:
+                    print("Please enter a number between 1 and 4.")
+            except ValueError:
+                print("Please enter a valid number.")
 
     def display_hand(self, hand):
         """
         Print the sorted hand to the console in a readable format.
         """
-        pass
+        print("\nYour sorted hand:", end=" ")
+        for card in hand.get_hand():
+            print(card, end=" ")
+        print()
 
     def display_results(self, combination):
         """
         Show detected poker hand(s) and update tally.
         """
-        pass
+        if combination in self.combination_counts:
+            self.combination_counts[combination] += 1
+
+        print(f"\nDetected combination: {combination}!\n")
+
+        print("Combinations found so far:")
+        for combo, count in self.combination_counts.items():
+            print(f"- {combo}: {count}")
+
+
+if __name__ == "__main__":
+    game = Game()
+    game.start()
