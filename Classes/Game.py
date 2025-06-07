@@ -1,4 +1,4 @@
-
+from Classes.Sorting_algorithms import heap_sort, binary_insertion_sort, merge_sort, quick_sort
 from computation.Classes.Card import Card, Deck
 from Classes.Hand_Detection import detect_poker_hand
 
