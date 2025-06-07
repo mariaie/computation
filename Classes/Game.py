@@ -71,13 +71,32 @@ class Game:
         - Update and show combination stats
         """
         pass
-
-    def choose_sorting_algorithm(self):
-        """
+        
+def choose_sorting_algorithm(hand):
+      """
         Prompt user to select a sorting algorithm for the drawn hand.
         Returns the selected algorithm as a function reference.
         """
-        pass
+    while True:
+        number = int(input(
+            "Choose the sorting algorithm:\n 1) Heap Sort;\n 2) Binary Insertion Sort;\n 3) Merge Sort;\n 4) Quick Sort;\n Choose one number: "))
+        match number:
+            case 1:
+                hand = heap_sort(hand)
+                break
+            case 2:
+                hand = binary_insertion_sort(hand)
+                break
+            case 3:
+                hand = merge_sort(hand)
+                break
+            case 4:
+                quick_sort(hand, 0, hand.get_quantity() - 1)
+                break
+            case _:
+                print("Please type a number between 1 and 4.")
+
+    return hand
 
     def display_hand(self, hand):
         """
