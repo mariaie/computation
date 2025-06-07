@@ -67,7 +67,7 @@ def is_flush(hand):
         return False
 
     suit_counts = Counter(card.suit for card in hand)
-    return any(count >= 5 for count in suit_counts.values)
+    return any(count >= 5 for count in suit_counts.values())
 
 
 def is_full_house(hand):
@@ -94,7 +94,7 @@ def is_straight_flush(hand):
     if len(hand) < 5:
         return False
     # Group cards by suit
-    suits: {}
+    suits= {}
     for card in hand:
         suits.setdefault(card.suit, []).append(card)
     # Check for straight in each suit group
@@ -114,7 +114,7 @@ def is_royal_flush(hand):
     royal_values = {9, 10, 11, 12, 0}
 
     # Group by suit
-    suits: {}
+    suits= {}
     for card in hand:
         suits.setdefault(card.suit, []).append(card)
 

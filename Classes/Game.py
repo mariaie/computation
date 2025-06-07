@@ -1,7 +1,7 @@
 from Classes.Card_game import Card
 from Classes.Deck import Deck
 from Classes.Hand_Detection import detect_poker_hand
-from Classes.Sorting_algorithms import Sorting_Algorithms
+from Classes.Sorting_algorithms import heap_sort,binary_insertion_sort,merge_sort,quick_sort
 from Classes.Hand import Hand
 from colorama import init, Fore, Style
 import sys

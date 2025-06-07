@@ -28,3 +28,14 @@ class Hand:
 
     def get_card(self, index):
         return self.get_hand()[index]
+
+    def __len__(self):
+        return self.quantity
+
+    def __iter__(self):
+        return iter(self.hand)
+
+
+    def __getitem__(self, idx):
+        return self.hand[idx]
+
