@@ -1,3 +1,5 @@
+from Classes.hand import hand  
+
 #heap sort
 def heapify(hand, hand_size, i):
     largest = i  # Assume que o maior é a raiz
