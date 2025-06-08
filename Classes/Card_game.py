@@ -23,15 +23,33 @@ class Card:
         "hearts": " ♥",
         "diamonds": " ♦"
     }
+    def get_value(self):
+    """
+    Returns the value associated with the card.
 
-    def get_value(self):  # this will help later for the sorting
+    Returns:
+        int: The numeric value of the card, which can be used for sorting or comparison.
+    """
         return self.value
 
     def get_rank(self):
+    """
+    Returns the rank of the card.
+
+    Returns:
+        str: The rank of the card (e.g., 'A', 'K', 'Q', 'J', '10', etc.).
+    """
         return self.rank
 
     def get_suit(self):
+    """
+    Returns the suit of the card.
+
+    Returns:
+        str: The suit of the card (e.g., 'Hearts', 'Diamonds', 'Clubs', 'Spades').
+    """
         return self.suit
+   
 
     def __init__(self, value, suit):
         """
