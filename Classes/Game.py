@@ -39,15 +39,24 @@ class Game:
         - Manage replay logic
         """
         print("\n=== Welcome to the Poker Hand Detector! ===\n")
+        print("You can draw between 3 and 15 cards")
+        print("You can sort your hand using Binary Insertion Sort, Heap Sort, or Merge Sort")
+
+        first_round = True
 
         while self.playing:
-            play = input("Do you want to play a hand? (yes/no): ").lower()
-            if play in ['y', 'yes']:
+            if first_round:
+                play = input("\nDo you want to play a hand? (yes/no): ").lower()
+                first_round = False
+            else:
+                play = input("\nWould you like to play another round or leave the game (play/exit)? ").lower()
+
+            if play in ['y', 'yes', 'play']:
                 self.play_round()
-            elif play in ['n', 'no']:
+            elif play in ['n', 'no', 'exit']:
                 self.playing = False
             else:
-                print("Please enter 'yes' or 'no'.")
+                print("Please provide a valid answer as shown in parentheses.")
 
         print("\nThank you for playing! See you next time.\n")
 
@@ -92,7 +101,12 @@ class Game:
         Prompt user to select a sorting algorithm for the drawn hand.
         Returns the sorted hand.
         """
-        print("\nChoose a sorting algorithm:")
+        print("\nYour current hand:", end=" ")
+        for card in hand.get_hand():
+            print(card, end=" ")
+        print()
+
+        print("\nChoose a sorting algorithm to sort your hand:")
         print("1 - Heap Sort")
         print("2 - Merge Sort")
         print("3 - Binary Insertion Sort")

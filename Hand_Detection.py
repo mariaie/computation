@@ -22,9 +22,9 @@ def is_two_pair(hand):
     Assumes hand is a list of Card objects with a value attribute
     """
     value_counts = Counter(card.value for card in hand)
-    pairs = [v for v, count in value_counts.items() if count == 2]
-    three_or_more = [v for v, count in value_counts.items() if count > 2]
-    return len(pairs) == 2 and len(three_or_more) == 0
+    pairs = [v for v, count in value_counts.items() if count >= 2]
+    # Return True if there are at least two pairs
+    return len(pairs) >= 2
 
 
 def is_three_of_a_kind(hand):
@@ -55,7 +55,7 @@ def is_straight(hand):
             return True
     # Special case: Ace Low Straight (A,2,3,4,5)
     # card.value is 0-12, so Ace=0, King=12
-    if set([0, 1, 2, 3, 4]).issubset(values):
+    if {0, 1, 2, 3, 4}.issubset(values):
         return True
 
     return False
