@@ -1,10 +1,7 @@
-from computation.Classes.Card_game import Card
-from computation.Classes.Deck import Deck
-from computation.Classes.Hand_Detection import detect_poker_hand
-from computation.Classes.Sorting_algorithms import heap_sort,binary_insertion_sort,merge_sort,quick_sort
-from computation.Classes.Hand import Hand
-from colorama import init, Fore, Style
-import sys
+from computation.Classes import Deck, Hand
+from computation.Hand_Detection import detect_poker_hand
+from computation.Sorting_algorithms import heap_sort,binary_insertion_sort,merge_sort,quick_sort
+from colorama import init
 
 init(autoreset=True)
 
