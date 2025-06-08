@@ -40,7 +40,7 @@ class Game:
         """
         print("\n=== Welcome to the Poker Hand Detector! ===\n")
         print("You can draw between 3 and 15 cards")
-        print("You can sort your hand using Binary Insertion Sort, Heap Sort, or Merge Sort")
+        print("You can sort your hand using Heap Sort, Binary Insertion Sort, Merge Sort or Quick Sort.")
 
         first_round = True
 
@@ -70,8 +70,10 @@ class Game:
         - Detect poker hand
         - Update and show combination stats
         """
+        print('Shuffling the deck...')
         deck = Deck()
         deck.shuffle()
+        print(f"Deck after shuffling with {len(deck.cards)} cards available!")
 
         hand = self.draw_cards_from_deck(deck)
         sorted_hand = self.choose_sorting_algorithm(hand)

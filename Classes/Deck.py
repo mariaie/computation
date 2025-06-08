@@ -16,7 +16,7 @@ class Deck:
         """
         self.cards = []
         for suit in Card.suit_names:
-            for value in range(1, 14):  # 1 to 13 inclusive
+            for value in range(1, 14):
                 self.cards.append(Card(value, suit))
 
     def __str__(self):
