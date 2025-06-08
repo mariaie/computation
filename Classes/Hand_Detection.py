@@ -1,5 +1,6 @@
 from collections import Counter
 
+
 def is_one_pair(hand):
     """
     Returns True if hand contains exactly one pair.
@@ -33,9 +34,10 @@ def is_three_of_a_kind(hand):
     """
     value_counts = Counter(card.value for card in hand)
     has_three = any(count == 3 for count in value_counts.values())
-    pairs_or_more = sum(1 for count in value_counts.values() if count >=2)
-    #Exactly on triplet, no pair
+    pairs_or_more = sum(1 for count in value_counts.values() if count >= 2)
+    # Exactly on triplet, no pair
     return has_three and pairs_or_more == 1
+
 
 def is_straight(hand):
     """
@@ -49,7 +51,7 @@ def is_straight(hand):
 
     # Check normal straights (Ace high)
     for i in range(len(values) - 4):
-        if values[i+4] - values[i] == 4 and len(set(values[i:i+5])) == 5:
+        if values[i + 4] - values[i] == 4 and len(set(values[i:i + 5])) == 5:
             return True
     # Special case: Ace Low Straight (A,2,3,4,5)
     # card.value is 0-12, so Ace=0, King=12
@@ -79,12 +81,14 @@ def is_full_house(hand):
     has_pair = any(count == 2 for count in value_counts.values())
     return has_three and has_pair
 
+
 def is_four_of_a_kind(hand):
     """
     Returns True if hand contains four cards of the same value.
     """
     value_counts = Counter(card.value for card in hand)
     return any(count == 4 for count in value_counts.values())
+
 
 def is_straight_flush(hand):
     """
@@ -94,7 +98,7 @@ def is_straight_flush(hand):
     if len(hand) < 5:
         return False
     # Group cards by suit
-    suits= {}
+    suits = {}
     for card in hand:
         suits.setdefault(card.suit, []).append(card)
     # Check for straight in each suit group
@@ -114,7 +118,7 @@ def is_royal_flush(hand):
     royal_values = {9, 10, 11, 12, 0}
 
     # Group by suit
-    suits= {}
+    suits = {}
     for card in hand:
         suits.setdefault(card.suit, []).append(card)
 
@@ -123,6 +127,7 @@ def is_royal_flush(hand):
         if royal_values.issubset(suit_values):
             return True
     return False
+
 
 def detect_poker_hand(hand):
     """

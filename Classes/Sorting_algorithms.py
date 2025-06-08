@@ -1,4 +1,4 @@
-from Classes.Hand import Hand
+from computation.Classes.Hand import Hand
 
 #heap sort
 def heapify(hand, hand_size, i):

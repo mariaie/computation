@@ -1,8 +1,3 @@
-# Card objects must store information regarding their value and their suit.
-# You do not need to consider Jokers or any other type of cards.
-# - Values: 1 (Ace), 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen and King.
-# - Suits: Spades, Clubs, Hearts and Diamonds
-
 from colorama import init, Fore, Style
 
 init(autoreset=True)
@@ -19,7 +14,7 @@ class Card:
     """
 
     value_names = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
-    suit_names = ["spades","clubs","diamonds","hearts"]
+    suit_names = ["spades", "clubs", "diamonds", "hearts"]
 
     # dictionary with symbols
     suit_symbols = {
@@ -28,7 +23,8 @@ class Card:
         "hearts": " ♥",
         "diamonds": " ♦"
     }
-    def get_value(self):  #this will help later for the sorting
+
+    def get_value(self):  # this will help later for the sorting
         return self.value
 
     def get_rank(self):
@@ -36,8 +32,6 @@ class Card:
 
     def get_suit(self):
         return self.suit
-
-    
 
     def __init__(self, value, suit):
         """
@@ -87,4 +81,3 @@ class Card:
             str: A string representation for debugging (e.g., 'Card(value=1, suit='spades')').
         """
         return f"Card(value={self.value}, suit={self.suit})"
-
