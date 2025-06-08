@@ -1,10 +1,9 @@
-
 class Hand:
-     """
+    """
     Represents a hand of cards in a card game.
     """
     def __init__(self, hand):
-         """
+        """
         Initializes the Hand with a list of cards.
 
         Args:
@@ -32,7 +31,7 @@ class Hand:
         return self.hand
 
     def get_card_value(self, card_index):
-         """
+        """
         Returns the value of a card at a specific index.
 
         Args:
@@ -51,7 +50,7 @@ class Hand:
             card.show_card()
 
     def switch_cards(self, index_card1, index_card2):
-          """
+        """
         Switches the positions of two cards in the hand.
 
         Args:
@@ -61,7 +60,7 @@ class Hand:
         self.hand[index_card1], self.hand[index_card2] = self.hand[index_card2], self.hand[index_card1]
 
     def get_cards(self, index_card1, index_card2):
-          """
+        """
         Returns a list of cards between two indices.
 
         Args:
@@ -89,7 +88,7 @@ class Hand:
         return self.get_hand()[index]
 
     def __len__(self):
-         """
+        """
         Returns the number of cards in the hand.
 
         Returns:
@@ -98,7 +97,7 @@ class Hand:
         return self.quantity
 
     def __iter__(self):
-         """
+        """
         Returns an iterator over the cards in the hand.
 
         Returns:
@@ -108,7 +107,7 @@ class Hand:
 
 
     def __getitem__(self, idx):
-          """
+        """
         Enables indexing to get a card from the hand.
 
         Args:

@@ -1,5 +1,5 @@
 import random
-from computation.Classes.Card_game import Card
+from Classes.Card_game import Card
 
 
 class Deck:
